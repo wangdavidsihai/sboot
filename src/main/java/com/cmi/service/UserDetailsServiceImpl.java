@@ -58,10 +58,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private Collection<? extends GrantedAuthority> grantedAuthorities(long userId) {
 		List<RoleUser> roleUserList = roleUserRepository.findBySysUserId(userId);
 		List<Role> roles = new ArrayList<Role>();
-
+		List<Long> rolIds = new ArrayList<Long>();
 		for (RoleUser roleUser : roleUserList) {
-			roles.add(roleRepository.findById(roleUser.getSysRoleId()));
+			rolIds.add(roleUser.getSysRoleId());
 		}
+		roles=roleRepository.findByIdIn(rolIds);
 		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		for (Role r : roles) {
 			authorities.add(new SimpleGrantedAuthority(r.getName()));

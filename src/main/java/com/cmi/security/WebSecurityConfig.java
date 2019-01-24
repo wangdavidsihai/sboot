@@ -71,10 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll().anyRequest().authenticated().and()
 				.addFilter(new CustomerAuthenticationFilter(authenticationManager()))
 				.addFilter(new CustomerAuthenticationTokenFilter(authenticationManager()));
-		// http.authorizeRequests().antMatchers("/users/**").authenticated().anyRequest().hasRole("ADMIN").anyRequest()
-		// .permitAll().and().addFilter(new
-		// CustomerAuthenticationFilter(authenticationManager()))
-		// .addFilter(new CustomerAuthenticationTokenFilter(authenticationManager()));
 	}
 
 }

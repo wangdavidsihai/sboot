@@ -1,5 +1,6 @@
 package com.cmi.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 	List<Role> findByName(String name);
 
 	Role findById(long id);
+	
+	List<Role> findByIdIn(Collection<?> c);
 }
